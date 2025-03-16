@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/sidebar.css" />
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <img src=" " alt="Logo" />
+            </div>
+            <ul class="menu">
+                <li>
+                    <a href="@Url.Action("ProductList", "Admin")" class="menu-item">
+                        <i class="fas fa-products"></i>
+                        Quản lý sản phẩm
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ProdCategories", "Admin")" class="menu-item">
+                        <i class="fas fa-categories"></i>
+                        Quản lý danh mục
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("", "Admin")" class="menu-item">
+                        <i class="fas fa-categories"></i>
+                        Quản lý nhà cung cấp
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main content area -->
+        <div class="main-content">
+            @RenderBody()
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuItems = document.querySelectorAll('.menu > li > a.menu-item');
+
+            menuItems.forEach(item => {
+                item.addEventListener('click', function (e) {
+                    const submenu = this.nextElementSibling;
+                    const arrowIcon = this.querySelector('.dropdown-arrow');
+
+                    if (submenu) {
+                        e.preventDefault();
+                        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+                        arrowIcon.classList.toggle('rotate');
+                    }
+
+                    menuItems.forEach(menu => menu.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

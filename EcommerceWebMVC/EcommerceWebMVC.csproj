@@ -1,0 +1,78 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Hinh\0.jpg" />
+    <None Include="wwwroot\Hinh\02.jpg" />
+    <None Include="wwwroot\Hinh\2.jpg" />
+    <None Include="wwwroot\Hinh\3.jpg" />
+    <None Include="wwwroot\Hinh\4.jpg" />
+    <None Include="wwwroot\Hinh\5.jpg" />
+    <None Include="wwwroot\Hinh\6.jpg" />
+    <None Include="wwwroot\Hinh\7.jpg" />
+    <None Include="wwwroot\Hinh\8.jpg" />
+    <None Include="wwwroot\Hinh\9.jpg" />
+    <None Include="wwwroot\Hinh\ring01.jpg" />
+    <None Include="wwwroot\Hinh\ring02.jpg" />
+    <None Include="wwwroot\Hinh\ring03.jpg" />
+    <None Include="wwwroot\Hinh\ring04.jpg" />
+    <None Include="wwwroot\Hinh\ring05.jpg" />
+    <None Include="wwwroot\Hinh\ring06.jpg" />
+    <None Include="wwwroot\Hinh\ring07.jpg" />
+    <None Include="wwwroot\Hinh\ring08.jpg" />
+    <None Include="wwwroot\Hinh\ring09.jpg" />
+    <None Include="wwwroot\Hinh\ring10.jpg" />
+    <None Include="wwwroot\Hinh\set02.jpg" />
+    <None Include="wwwroot\Hinh\set03.jpg" />
+    <None Include="wwwroot\Hinh\set04.jpg" />
+    <None Include="wwwroot\Hinh\set05.jpg" />
+    <None Include="wwwroot\Hinh\set056.jpg" />
+    <None Include="wwwroot\Hinh\set07.jpg" />
+    <None Include="wwwroot\Hinh\set08.jpg" />
+    <None Include="wwwroot\Hinh\set09.jpg" />
+    <None Include="wwwroot\Hinh\set1.jpg" />
+    <None Include="wwwroot\Hinh\set10.jpg" />
+    <None Include="wwwroot\Hinh\set12.jpg" />
+    <None Include="wwwroot\Hinh\set13.jpg" />
+    <None Include="wwwroot\Hinh\set14.jpg" />
+    <None Include="wwwroot\Hinh\set15.jpg" />
+    <None Include="wwwroot\Hinh\set16.jpg" />
+    <None Include="wwwroot\Hinh\set17.jpg" />
+    <None Include="wwwroot\Hinh\set18.jpg" />
+    <None Include="wwwroot\Hinh\set20.jpg" />
+    <None Include="wwwroot\Hinh\watch01.jpg" />
+    <None Include="wwwroot\Hinh\watch02.jpg" />
+    <None Include="wwwroot\Hinh\watch03.jpg" />
+    <None Include="wwwroot\Hinh\watch04.jpg" />
+    <None Include="wwwroot\Hinh\watch05.jpg" />
+    <None Include="wwwroot\Hinh\watch06.jpg" />
+    <None Include="wwwroot\Hinh\watch07.jpg" />
+    <None Include="wwwroot\Hinh\watch08.jpg" />
+    <None Include="wwwroot\Hinh\watch09.jpg" />
+    <None Include="wwwroot\Hinh\watch10.jpg" />
+    <None Include="wwwroot\Hinh\watch11.jpg" />
+    <None Include="wwwroot\Hinh\watch12.jpg" />
+    <None Include="wwwroot\Hinh\watch13.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+  </ItemGroup>
+
+</Project>

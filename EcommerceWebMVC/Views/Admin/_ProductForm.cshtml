@@ -1,47 +1,273 @@
 ﻿@model EcommerceWebMVC.Data.HangHoa
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Thêm Hàng Hóa";
+}
+<style>
+    .duoi {
+        margin: 0 auto;
+        max-width: 1500px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
 
-<h4>HangHoa</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="_ProductForm">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TenHh" class="control-label"></label>
-                <input asp-for="TenHh" class="form-control" />
-                <span asp-validation-for="TenHh" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Hinh" class="control-label"></label>
-                <input asp-for="Hinh" class="form-control" />
-                <span asp-validation-for="Hinh" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaLoai" class="control-label"></label>
-                <select asp-for="MaLoai" class ="form-control" asp-items="ViewBag.MaLoai"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="DonGia" class="control-label"></label>
-                <input asp-for="DonGia" class="form-control" />
-                <span asp-validation-for="DonGia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MoTa" class="control-label"></label>
-                <input asp-for="MoTa" class="form-control" />
-                <span asp-validation-for="MoTa" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaNcc" class="control-label"></label>
-                <select asp-for="MaNcc" class ="form-control" asp-items="ViewBag.MaNcc"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fdfdfd;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 15px; /* Slightly larger font size */
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #000;
+        color: white;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) td {
+        background-color: #f7f7f7;
+    }
+
+    /* Delete button styling */
+    button.delete {
+        background-color: #dc3545;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        button.delete:hover {
+            background-color: #FF6969;
+        }
+
+    .edit {
+        background-color: #FF6500;
+        color: white;
+        padding: 8px 14px; /* Điều chỉnh kích thước */
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        border: none; /* Xóa border mặc định */
+        display: inline-block;
+    }
+
+        .edit:hover {
+            background-color: #FD8B51;
+        }
+
+    button.add {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        button.add:hover {
+            background-color: #34d058;
+        }
+
+</style>
+<style>
+    .duoi {
+        margin: 0 auto;
+        max-width: 1500px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fdfdfd;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 15px; /* Slightly larger font size */
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #000;
+        color: white;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) td {
+        background-color: #f7f7f7;
+    }
+
+    /* Delete button styling */
+    button.delete {
+        background-color: #dc3545;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        button.delete:hover {
+            background-color: #FF6969;
+        }
+
+    .edit {
+        background-color: #FF6500;
+        color: white;
+        padding: 8px 14px; /* Điều chỉnh kích thước */
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        border: none; /* Xóa border mặc định */
+        display: inline-block;
+    }
+
+        .edit:hover {
+            background-color: #FD8B51;
+        }
+
+    button.add {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        button.add:hover {
+            background-color: #34d058;
+        }
+
+</style>
+
+<div class="tren">
+    <h2>Thêm Hàng Hóa</h2>
+    <form asp-action="_ProductForm" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>Tên sản phẩm:</label>
+            <input asp-for="TenHh" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Hinh">Hình ảnh:</label>
+            <input asp-for="Hinh" type="file" class="form-control" accept="image/*" onchange="previewImage(event)" required />
+            <img id="preview" class="image-preview" />
+        </div>
+
+        <div class="form-group">
+            <label>Loại sản phẩm:</label>
+            <select asp-for="MaLoai" class="form-control" required>
+                <option value="1">Nước hoa</option>
+                <option value="2">Nhẫn</option>
+                <option value="3">Set quần áo</option>
+                <option value="4">Đồng hồ</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label >Đơn giá:</label>
+            <input asp-for="DonGia" type="number" class="form-control" required min="0" oninput="calculateDiscountedPrice()" />
+        </div>
+
+        <div class="form-group">
+            <label >Giảm giá (%):</label>
+            <input asp-for="GiamGia" type="number" class="form-control" min="0" max="100" oninput="calculateDiscountedPrice()" />
+        </div>
+
+        @* <div class="form-group"> *@
+        @*     <label for="GiaSauGiam">Giá sau giảm:</label> *@
+        @*     <input type="text" id="GiaSauGiam" class="form-control" readonly /> *@
+        @* </div> *@
+
+        <div class="form-group">
+            <label>Nhà cung cấp:</label>
+             <select asp-for="MaNcc" class="form-control" required>
+                <option value="1">Công ty A</option>
+                <option value="2">Công ty B</option>
+                <option value="3">Công ty C</option>
+             </select>
+        </div>
+
+        <div class="form-group">
+            <label>Mô tả:</label>
+            <textarea asp-for="MoTa" class="form-control"></textarea>
+        </div>
+
+        
+    </form>
+    
+        
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var preview = document.getElementById('preview');
+            preview.src = reader.result;
+            preview.style.display = 'block';
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
 
+    function calculateDiscountedPrice() {
+        var donGia = parseFloat(document.querySelector('[asp-for="DonGia"]').value) || 0;
+        var giamGia = parseFloat(document.querySelector('[asp-for="GiamGia"]').value) || 0;
+
+        if (giamGia < 0) {
+            document.querySelector('[asp-for="GiamGia"]').value = 0;
+            giamGia = 0;
+        }
+
+        var giaSauGiam = donGia - (donGia * giamGia / 100);
+        document.getElementById('GiaSauGiam').value = giaSauGiam.toFixed(2);
+    }
+</script>

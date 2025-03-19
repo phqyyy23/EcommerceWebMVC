@@ -25,7 +25,7 @@ builder.Services.AddSession(options =>
 }
 );
 //AutoMapper
-builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+//builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 // https://docs.automapper.org/en/stable/Dependency-injection.html
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));

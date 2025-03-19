@@ -18,13 +18,13 @@
             </div>
             <ul class="menu">
                 <li>
-                    <a href="@Url.Action("ProductList", "Admin")" class="menu-item">
+                    <a href="@Url.Action("Index", "Admin")" class="menu-item">
                         <i class="fas fa-products"></i>
                         Quản lý sản phẩm
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("ProdCategories", "Admin")" class="menu-item">
+                    <a href="@Url.Action("ListCate", "Admin")" class="menu-item">
                         <i class="fas fa-categories"></i>
                         Quản lý danh mục
                     </a>
@@ -33,6 +33,12 @@
                     <a href="@Url.Action("", "Admin")" class="menu-item">
                         <i class="fas fa-categories"></i>
                         Quản lý nhà cung cấp
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Orders", "Admin")" class="menu-item">
+                        <i class="fas fa-orders"></i>
+                        Quản lý đơn hàng
                     </a>
                 </li>
             </ul>

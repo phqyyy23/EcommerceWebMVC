@@ -2,7 +2,9 @@
 @{
     ViewData["Title"] = "Admin";
     //     Layout = "_LayoutAdmin";
-    Layout = null;
+    Layout = "_LayoutAdmin";
+    
+    
 }
 @if (TempData["SuccessMessage"] != null)
 {
@@ -10,84 +12,183 @@
         @TempData["SuccessMessage"]
     </div>
 }
-<p>
-    <a asp-action="CreateProduct">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MaHh)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TenHh)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Hinh)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DonGia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GiamGia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SoLanXem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MoTa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaLoaiNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaNccNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaHh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenHh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hinh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DonGia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GiamGia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoLanXem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MoTa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaLoaiNavigation.MaLoai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaNccNavigation.MaNcc)
-            </td>
-            <td>
-                <a asp-action="EditProduct" asp-route-id="@item.MaHh">Edit</a> 
+<style>
+    .duoi {
+        margin: 0 auto;
+        max-width: 1500px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
 
-                <form asp-action="DeleteProduct" asp-route-id="@item.MaHh" method="post" onsubmit="return confirm('Bạn có chắc muốn xóa không?');" style="display:inline;">
-                    @Html.AntiForgeryToken()
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fdfdfd;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 15px; /* Slightly larger font size */
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #000;
+        color: white;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) td {
+        background-color: #f7f7f7;
+    }
+
+    /* Delete button styling */
+    button.delete {
+        background-color: #dc3545;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        button.delete:hover {
+            background-color: #FF6969;
+        }
+
+    .edit {
+        background-color: #FF6500;
+        color: white;
+        padding: 8px 14px; /* Điều chỉnh kích thước */
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        border: none; /* Xóa border mặc định */
+        display: inline-block;
+    }
+
+        .edit:hover {
+            background-color: #FD8B51;
+        }
+
+    button.add {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        button.add:hover {
+            background-color: #34d058;
+        }
+
+</style>
+<div class="duoi">
+    <form asp-action="CreateProduct">
+        <button type="submit"  class="add">Create New</button>
+    </form>
+    <h2>DANH SÁCH HÀNG HÓA</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaHh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenHh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hinh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DonGia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GiamGia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SoLanXem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MoTa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaLoaiNavigation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaNccNavigation)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaHh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenHh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hinh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DonGia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GiamGia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLanXem)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MoTa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaLoaiNavigation.MaLoai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaNccNavigation.MaNcc)
+                    </td>
+                    <td>
+                        <form asp-action="EditProduct" asp-route-id="@item.MaHh">
+                            <button type="submit" class="edit">Edit</button>
+                        </form>
+
+                        <form asp-action="DeleteProduct" asp-route-id="@item.MaHh" method="post" onsubmit="return confirm('Bạn có chắc muốn xóa không?');" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
 <script>
     function confirmDelete(id) {
         if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?")) {

@@ -1,0 +1,86 @@
+﻿@using EcommerceWebMVC.Data
+@model List<HoaDon>
+@{
+    Layout = "_LayoutAdmin";
+    <style>
+        .duoi {
+            margin: 0 auto;
+            max-width: 1000px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fdfdfd;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px; /* Slightly larger font size */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #000;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f7f7f7;
+        }
+    </style>
+}
+<div class="duoi">
+    <h2>Quản lý đơn hàng</h2>
+
+    <table border="1">
+        <tr>
+            <th>Mã đơn</th>
+            <th>Khách hàng</th>
+            <th>Ngày đặt</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+        </tr>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.MaHd</td>
+                <td>@(order.MaKhNavigation?.HoTen ?? "A")</td>
+                <td>@order.NgayDat?.ToString("dd/MM/yyyy")</td>
+                <td>@order.MaTrangThaiNavigation?.TenTrangThai</td>
+                <td>
+                    @if (order.MaTrangThaiNavigation?.TenTrangThai == "Chờ xác nhận"
+                   || order.MaTrangThaiNavigation?.TenTrangThai == "Đã xác nhận"
+                   || order.MaTrangThaiNavigation?.TenTrangThai == "Đang giao")
+                    {
+                        <a href="/Admin/NextStep?orderId=@order.MaHd">Tiến trình tiếp theo</a>
+                    }
+                    @if (order.MaTrangThaiNavigation?.TenTrangThai == "Chờ xác nhận")
+                    {
+                        <a href="/Admin/CancelOrder?orderId=@order.MaHd">Hủy đơn hàng</a>
+                    }
+                    @* @if (order.MaTrangThaiNavigation?.TenTrangThai == "Đã giao hàng") *@
+                    @* { *@
+                    @*     <a href="/Admin/PayOrder?orderId=@order.MaHd">Thanh toán</a> *@
+                    @* } *@
+                </td>
+            </tr>
+        }
+    </table>
+</div>

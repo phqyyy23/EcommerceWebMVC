@@ -98,6 +98,7 @@ public partial class EcommerceWebContext : DbContext
             entity.ToTable("HoaDon");
 
             entity.Property(e => e.MaHd).HasColumnName("MaHD");
+            entity.Property(e => e.DienThoai).HasMaxLength(20);
             entity.Property(e => e.HoTen).HasMaxLength(100);
             entity.Property(e => e.MaKh).HasColumnName("MaKH");
             entity.Property(e => e.NgayDat)

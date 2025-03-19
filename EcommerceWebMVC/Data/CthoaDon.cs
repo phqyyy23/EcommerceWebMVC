@@ -11,7 +11,7 @@ public partial class CthoaDon
 
     public int? MaHh { get; set; }
 
-    public decimal DonGia { get; set; }
+    public decimal? DonGia { get; set; }
 
     public int SoLuong { get; set; }
 

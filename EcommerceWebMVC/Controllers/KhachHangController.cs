@@ -92,35 +92,49 @@ namespace EcommerceWebMVC.Controllers
                     }
                     else
                     {
-                        var claims = new List<Claim>
+                        if (khachHang.MaPq == 1)
                         {
-                            new Claim(ClaimTypes.Name, khachHang.HoTen),
-                            new Claim("CustomerID", khachHang.MaKh.ToString()),
-                            new Claim(ClaimTypes.Role, "Customer")
-                        };
+                            var claims = new List<Claim>
+                            {
+                                new Claim(ClaimTypes.Name, khachHang.HoTen),
+                                new Claim("AdminID", khachHang.MaKh.ToString()),
+                                new Claim(ClaimTypes.Role, "Admin")
+                            };
 
-                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
-                        await HttpContext.SignInAsync(claimsPrincipal);
+                            await HttpContext.SignInAsync(claimsPrincipal);
 
-                        if (Url.IsLocalUrl(ReturnUrl))
-                        {
-                            return Redirect(ReturnUrl);
+                            return RedirectToAction("Index", "Admin");
+
                         }
                         else
                         {
-                            return Redirect("/");
+                            var claims = new List<Claim>
+                            {
+                                new Claim(ClaimTypes.Name, khachHang.HoTen),
+                                new Claim(MySetting.CLAIM_ID_KH, khachHang.MaKh.ToString()),
+                                new Claim(ClaimTypes.Role, "User")
+                            };
+
+                            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+                            await HttpContext.SignInAsync(claimsPrincipal);
+                            return RedirectToAction("Index", "Home");
                         }
+                        
                     }
 
                 }
             }
             return RedirectToAction("Index","Home");
         }
+        
 
 
-        [Authorize(Roles = "Customer")]
+        [Authorize(Roles = "User")]
         public IActionResult Profile(int id)
         {
             // Kiểm tra nếu chưa đăng nhập

@@ -11,7 +11,7 @@ public partial class HoaDon
 
     public DateTime? NgayDat { get; set; }
 
-    public DateOnly? NgayGiao { get; set; }
+    public DateTime? NgayGiao { get; set; }
 
     public string? HoTen { get; set; }
 
@@ -24,6 +24,8 @@ public partial class HoaDon
     public int? MaTrangThai { get; set; }
 
     public string? GhiChu { get; set; }
+
+    public string? DienThoai { get; set; }
 
     public virtual ICollection<CthoaDon> CthoaDons { get; set; } = new List<CthoaDon>();
 

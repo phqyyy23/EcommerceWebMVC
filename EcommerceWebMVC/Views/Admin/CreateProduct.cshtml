@@ -1,10 +1,68 @@
-﻿
+﻿@model EcommerceWebMVC.Data.HangHoa
 @{
-    Layout = null;
+    Layout ="_LayoutAdmin";
 }
+<h2>Thêm Hàng Hóa</h2>
+<form asp-action="CreateProduct" asp-controller="Admin">
+        <div class="form-group">
+            <label>Tên sản phẩm:</label>
+            <input asp-for="TenHh" class="form-control" required />
+        </div>
 
-<h2>Create Product</h2>
-<form asp-action="CreateProduct">
-    @Html.Partial("_ProductForm")
+        <div class="form-group">
+            <label asp-for="Hinh">Hình ảnh:</label>
+            <input asp-for="Hinh" type="file" class="form-control" accept="image/*" onchange="previewImage(event)" required />
+            <img id="preview" class="image-preview" />
+        </div>
+
+        <div class="form-group">
+            <label>Loại sản phẩm:</label>
+            <select asp-for="MaLoai" class="form-control" required>
+                <option value="1">Nước hoa</option>
+                <option value="2">Nhẫn</option>
+                <option value="3">Set quần áo</option>
+                <option value="4">Đồng hồ</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Đơn giá:</label>
+            <input asp-for="DonGia" type="number" class="form-control" required min="0" oninput="calculateDiscountedPrice()" />
+        </div>
+
+        <div class="form-group">
+            <label>Giảm giá (%):</label>
+            <input asp-for="GiamGia" type="number" class="form-control" min="0" max="100" oninput="calculateDiscountedPrice()" />
+        </div>
+
+        @* <div class="form-group"> *@
+        @*     <label for="GiaSauGiam">Giá sau giảm:</label> *@
+        @*     <input type="text" id="GiaSauGiam" class="form-control" readonly /> *@
+        @* </div> *@
+
+        <div class="form-group">
+            <label>Nhà cung cấp:</label>
+            <select asp-for="MaNcc" class="form-control" required>
+                <option value="1">Công ty A</option>
+                <option value="2">Công ty B</option>
+                <option value="3">Công ty C</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Mô tả:</label>
+            <textarea asp-for="MoTa" class="form-control"></textarea>
+        </div>
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
+<script>
+          function previewImage(event) {
+          var reader = new FileReader();
+          reader.onload = function () {
+              var preview = document.getElementById('preview');
+              preview.src = reader.result;
+              preview.style.display = 'block';
+          }
+          reader.readAsDataURL(event.target.files[0]);
+      }
+</script>
